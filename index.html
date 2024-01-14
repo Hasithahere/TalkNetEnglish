@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulary Reading App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    #phrase {
+      font-size: 1.5em;
+      margin: 20px 0;
+      color: #444;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>TalkNet English Phrases </h2>
+    <p id="phrase">Wake up early</p>
+    <div class="buttons">
+      <button onclick="speak()">Speak</button>
+      <button onclick="nextPhrase()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let synth = window.speechSynthesis;
+    let phraseElement = document.getElementById('phrase');
+    let currentPhraseIndex = 0;
+    let phrases = [
+    
+     'Wake up early',            
+      'Brush your teeth',             
+      'Wash your face',  
+      'Have your breakfast',
+      'Get a rest',  
+      'Sweep the compound',             
+      'Speak in English',  
+      'Get ready to go',             
+      'Say something',  
+      'Do something', 
+      'Eat something',
+      'Shall we go out?',
+      'Read this',
+      'Take a photograph',            
+      'Get some medicine',
+      'Take an umbrella',
+      'Tell your father',
+      'Go to school',             
+      'will do something', 
+      'Will say something',
+      'Can do something', 
+      'Could do something',
+      'Don’t hurt me',  
+      'Never hurt others', 
+      'Change the way you learn', 
+      'Let me go', 
+      'Let me get in',
+      'Let me tell',
+      'Go/goes', 
+      'Went',
+      'Have gone',
+      'Go home',
+      'I go home everyday',
+      'She goes home every weekend',
+      'She went to school yesterday',
+      'She will go home tomorrow',
+      'Mother has gone',
+      'Shall we go on a trip?',
+      'Go straight without stopping',
+      'Shall we go out?',
+      'Put it here',
+      'Put the bag here',
+      'Put it on the table',        
+      'Do not get upset',
+      'Make some tea',
+      'Be polite',
+      'be humble', 
+      'be happy',           
+      'be intelligent',  
+      'to be a teacher', 
+      'Don’t be selfish',  
+      'Don’t be so cruel',
+      // ... (Your 50 phrases here)
+    ];
+
+    function speak() {
+      let text = phraseElement.textContent;
+      let utterance;
+
+      if ('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window) {
+        utterance = new SpeechSynthesisUtterance(text);
+        synth.speak(utterance);
+      } else {
+        alert('Text-to-speech not supported in this browser.');
+      }
+    }
+
+    function nextPhrase() {
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      phraseElement.textContent = phrases[currentPhraseIndex];
+    }
+  </script>
+</body>
+</html>
